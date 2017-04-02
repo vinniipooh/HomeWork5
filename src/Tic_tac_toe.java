@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Created by Александр on 02.04.2017.
  */
-public class HomeWork {
+public class Tic_tac_toe {
     private static char array[][] = new char[3][3];
     private static byte PCwin = 0, PClose = 0, User1win = 0, User2win = 0, User1lose = 0, User2lose = 0;
 

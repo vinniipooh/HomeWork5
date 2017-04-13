@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -194,119 +193,124 @@ public class Tic_tac_toe_v02 {
         byte choice = 0, Turn = 0;
 
         ResetArray(array);
+        try {
+            for (; choice != 4; ) {
+                winner = 0;
 
-        for (; choice != 4; ) {
-            winner = 0;
+                System.out.println("Выюерите режим:\n1)Против PC\n2)Против другого игрока\n3)Статистика\n4)Для выхода");
 
-            System.out.println("Выюерите режим:\n1)Против PC\n2)Против другого игрока\n3)Статистика\n4)Для выхода");
-            choice = scanner.nextByte();
-
-            switch (choice) {
-                case 1:
-                    for (; ; ) { //для одного раунда
-                        Table(array);
-
-                        System.out.println("Выберите клетку (1-9)");
-                        Turn = scanner.nextByte();
-                        EasyEnter(Turn);
-
-                        if (CheckEnter(array)) {
-                            array[x][y] = 'X';
+                choice = scanner.nextByte();
 
 
-                            if (WinCheck(array)) {
-                                ResetArray(array);
-                                break;
-                            }else if (CheckDraw(array)) {
-                                System.out.println("Ничья!");
-                                ResetArray(array);
-                                break;
-                            }
+                switch (choice) {
+                    case 1:
+                        for (; ; ) { //для одного раунда
+                            Table(array);
 
-                            for (; ; ) { // проверка правильности ввода компьютера
-                                x = random.nextInt(3);
-                                y = random.nextInt(3);
-                                if (array[x][y] != 'X' && array[x][y] != 'O') {
-                                    array[x][y] = 'O';
+                            System.out.println("Выберите клетку (1-9)");
+                            Turn = scanner.nextByte();
+                            EasyEnter(Turn);
+
+                            if (CheckEnter(array)) {
+                                array[x][y] = 'X';
+
+
+                                if (WinCheck(array)) {
+                                    ResetArray(array);
                                     break;
-                                } else continue;
-                            }
-                            if (WinCheck(array)) {
-                                ResetArray(array);
-                                break;
-                            } else continue;
-
-
-                        } else {
-                            System.out.println("Неправельный ввод.");
-                            continue;
-                        }
-                    }
-                    EndStep(choice);
-                    break;
-
-                case 2:
-                    for (; ; ) {
-                        Table(array);//выводит таблицу
-
-                        //ход игрока 1
-                        System.out.println("Игрок 1 выберите клетку (1-9)");
-                        Turn = scanner.nextByte();
-                        EasyEnter(Turn);
-
-                        if (CheckEnter(array)) {//проверка хода
-                            array[x][y] = 'X';
-
-
-                            if (WinCheck(array)) {
-                                ResetArray(array);
-                                break;//проверка выйграша
-                            }else if (CheckDraw(array)) {
+                                } else if (CheckDraw(array)) {
                                     System.out.println("Ничья!");
                                     ResetArray(array);
                                     break;
                                 }
 
-                            for (; ; ) {
-                                Table(array);
-
-                                System.out.println("Игрок 2 выберите клетку (1-9)");
-                                Turn = scanner.nextByte();
-                                EasyEnter(Turn);
-
-                                if (CheckEnter(array)) {
-                                    array[x][y] = 'O';
-                                    break;
-                                } else {
-                                    System.out.println("Неправельный ввод.");
-                                    continue;
+                                for (; ; ) { // проверка правильности ввода компьютера
+                                    x = random.nextInt(3);
+                                    y = random.nextInt(3);
+                                    if (array[x][y] != 'X' && array[x][y] != 'O') {
+                                        array[x][y] = 'O';
+                                        break;
+                                    } else continue;
                                 }
+                                if (WinCheck(array)) {
+                                    ResetArray(array);
+                                    break;
+                                } else continue;
+
+
+                            } else {
+                                System.out.println("Неправельный ввод.");
+                                continue;
                             }
-                            if (WinCheck(array)) {
-                                ResetArray(array);
-                                break;
-                            } else continue;
-
-
-                        } else {
-                            System.out.println("Неправельный ввод.");
-                            continue;
                         }
-                    }
+                        EndStep(choice);
+                        break;
 
-                    EndStep(choice);
-                    break;
+                    case 2:
+                        for (; ; ) {
+                            Table(array);//выводит таблицу
 
-                case 3:
-                    Statistic();
-                    break;
-                case 4:
-                    break;
-                default:
-                    System.out.println("Неправельный ввод");
-                    continue;
+                            //ход игрока 1
+                            System.out.println("Игрок 1 выберите клетку (1-9)");
+                            Turn = scanner.nextByte();
+                            EasyEnter(Turn);
 
+                            if (CheckEnter(array)) {//проверка хода
+                                array[x][y] = 'X';
+
+
+                                if (WinCheck(array)) {
+                                    ResetArray(array);
+                                    break;//проверка выйграша
+                                } else if (CheckDraw(array)) {
+                                    System.out.println("Ничья!");
+                                    ResetArray(array);
+                                    break;
+                                }
+
+                                for (; ; ) {
+                                    Table(array);
+
+                                    System.out.println("Игрок 2 выберите клетку (1-9)");
+                                    Turn = scanner.nextByte();
+                                    EasyEnter(Turn);
+
+                                    if (CheckEnter(array)) {
+                                        array[x][y] = 'O';
+                                        break;
+                                    } else {
+                                        System.out.println("Неправельный ввод.");
+                                        continue;
+                                    }
+                                }
+                                if (WinCheck(array)) {
+                                    ResetArray(array);
+                                    break;
+                                } else continue;
+
+
+                            } else {
+                                System.out.println("Неправельный ввод.");
+                                continue;
+                            }
+                        }
+
+                        EndStep(choice);
+                        break;
+
+                    case 3:
+                        Statistic();
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("Неправельный ввод");
+                        continue;
+
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Ты смухлевал, Пока!");
         }
     }
 }
